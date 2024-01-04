@@ -250,13 +250,21 @@ export class News extends Component {
             "publishedAt": "2024-01-03T00:14:54Z",
             "content": "The NFL fined Carolina Panthers owner David Tepper $300,000 on Tuesday in response to Tepper throwing a drink at fans near the end of the Panthers 26-0 loss to the Jaguars on Sunday in Jacksonville.\r… [+2198 chars]"
         }];
-
     constructor(){
         super();
         this.state={
             articles:this.articles,
             loading: false
         }
+    }
+
+    async componentDidMount(){
+        console.log("cdm");
+        let url="https://newsapi.org/v2/everything?q=tesla&from=2023-12-04&sortBy=publishedAt&apiKey=aa8657647fa6452ba3c85d56f5a2e5c0";
+        let data= await fetch(url);
+        let parsedata= await data.json();
+        console.log(parsedata);
+        this.setState({articles:parsedata.articles});
     }
   render() {
     return (
@@ -265,7 +273,7 @@ export class News extends Component {
         <div className="row">
             {this.state.articles.map((element)=>{
             return <div className="col-md-4" key={element.url}>
-                    <NewsItems title={element.title.slice(0,30)} discription={element.description.slice(0,70)} imageUrl= {element.urlToImage} newsUrl={element.url}/>
+                    <NewsItems title={!element.title?element.title.slice(0,30):""} discription={element.description?element.description.slice(0,70):""} imageUrl= {element.urlToImage} newsUrl={element.url}/>
                 </div>
             })}
         </div>
