@@ -11,7 +11,7 @@ export default class App extends Component {
       <div>
         <NavBar />
         <Routes>
-          <Route path="/home" element={<News key="home" pageSize={8} country="in" category="general" />} ></Route>
+          <Route path="/" element={<News key="home" pageSize={8} country="in" category="general" />} ></Route>
           <Route path="/about" element={<About/>} ></Route>
           <Route path="/business" element={<News key="business" pageSize={8} country="in" category="business" />} ></Route>
           <Route path="/entertainment" element={<News key="entertainment" pageSize={8} country="in" category="entertainment" />} ></Route>
@@ -22,7 +22,6 @@ export default class App extends Component {
           <Route path="/technology" element={<News key="technology" pageSize={8} country="in" category="technology" />} ></Route>
         </Routes>
       </div>
-
     )
   }
 }

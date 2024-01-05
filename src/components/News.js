@@ -58,7 +58,6 @@ class News extends Component {
             loading: false
         });
     };
-
     render() {
         return (
             <div className='container my-auto'>
@@ -68,10 +67,13 @@ class News extends Component {
                     {!this.state.loading && this.state.articles.map((element) => (
                         <div className="col-md-3 my-1" key={element.url}>
                             <NewsItems
-                                title={element.title ? element.title.slice(0, 30) : ""}
-                                description={element.description ? element.description.slice(0, 70) : ""}
+                                title={element.title ? element.title.slice(0, 40) : ""}
+                                description={element.description ? element.description.slice(0, 100) : ""}
                                 imageUrl={element.urlToImage}
                                 newsUrl={element.url}
+                                author={element.author}
+                                time={element.publishedAt}
+                                source={element.source.name}
                             />
                         </div>
                     ))}
