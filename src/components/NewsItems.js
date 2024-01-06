@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 
-export class NewsItems extends Component {
-  render() {
-    let {title,description, imageUrl,newsUrl,author,time,source} =this.props;
+const NewsItems = (props) => {
+    let {title,description, imageUrl,newsUrl,author,time,source} =props;
     return (
-        <div className="card" style={{ height: "auto" }} >
+        <div className="card" style={{ height: "auto"}} >
           <div style={{
             display: 'flex',
             justifyContent : 'flex-end',
             right : '0',
             position : 'absolute'
           }}>
-            <span class="badge rounded-pill bg-danger">{source.slice(0,5)}</span>
+            <span className="badge rounded-pill bg-danger">{source.slice(0,5)}</span>
           </div>
             <img src={imageUrl} className="card-img-top" alt="" style={{ width: "100%", height: "200px" }} />
             <div className="card-body">         
@@ -23,6 +22,5 @@ export class NewsItems extends Component {
         </div>
     )
   }
-}
 
 export default NewsItems
