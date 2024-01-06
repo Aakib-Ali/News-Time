@@ -22,7 +22,8 @@ class News extends Component {
         this.state = {
             articles: [],
             loading: false,
-            page: 1
+            page: 1,
+            totalResults:0
         };
         document.title = `${this.capitalizationFirstLatter(this.props.category)} - Time-News`;
     }
@@ -32,7 +33,7 @@ class News extends Component {
     
     async updateNews (){
         this.props.setProgress(0);
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=20d744b83e8143a5824e31d82b7277950&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+        let url =   `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=aa8657647fa6452ba3c85d56f5a2e5c0&page=${this.state.page}&pagesize=${this.props.pageSize}`;
         this.setState({ loading: true });
         this.props.setProgress(30);
         let data = await fetch(url);
@@ -40,7 +41,7 @@ class News extends Component {
         this.props.setProgress(70);
         this.setState({ 
             articles: parsedata.articles, 
-            totalResult: parsedata.totalResults, 
+            totalResults: parsedata.totalResults, 
             loading: false 
         });
         this.props.setProgress(100);
@@ -51,13 +52,13 @@ class News extends Component {
     }
     fetchMoreData = async () => {
         this.setState({page: this.state.page+1})
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=20d744b83e8143a5824e31d82b7277950&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+        let url =   `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=aa8657647fa6452ba3c85d56f5a2e5c0&page=${this.state.page}&pagesize=${this.props.pageSize}`;
         this.setState({ loading: true });
         let data = await fetch(url);
         let parsedata = await data.json();
         this.setState({ 
             articles: this.state.articles.concat(parsedata.articles), 
-            totalResult: parsedata.totalResults, 
+            totalResults: parsedata.totalResults, 
             loading: false 
         });
         
