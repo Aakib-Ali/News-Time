@@ -11,7 +11,7 @@ const App = ()=> {
   const [progress,setProgress] = useState(0);
     return (
       <div>
-        <NavBar />
+        <NavBar  />
         <LoadingBar
         color='#f11946'
         height={3}
